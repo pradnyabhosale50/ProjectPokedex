@@ -1,0 +1,63 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      Pokedex.org
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse sidenav" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/pokemon-list">
+            Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+      
+    </div>
+  </nav>
+<div class="container">
+    <!-- Infinity Scroll -->
+    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+        [infiniteScrollUpDistance]="2" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+        <h5 class="pt-2">Pokemon List</h5>
+        <div class="row ">
+          <!-- Pokemon List  -->
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-xl-2 p-2" *ngFor="let post of exdata1">
+                <div style="background: #f7f7f7;">
+                    <img [src]="post.url" class="card-img-top imgcustomcss" alt="...">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title"></h5>
+                        <div class="card-footer text-center">
+                            <h6 class="customfooter">
+                                {{post.name}}
+                            </h6>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Spinner -->
+        <div class="row pb-5">
+            <div class="col-md-12 p-5">
+                <ngx-spinner bdOpacity=0.9 bdColor="" size="default" color="#581f87" type="ball-pulse-sync"
+                    [fullScreen]="false">
+                </ngx-spinner>
+            </div>
+        </div>
+        <!-- Alert no more pokemon -->
+        <div *ngIf="!notEmptyPokemon" class="row pb-5">
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="text-muted h6 alert alert-secondary p-2">No more items to show</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unable to add background color because no res coming from backend -->
